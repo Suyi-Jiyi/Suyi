@@ -139,15 +139,85 @@ function generateWordCollage() {
     });
 }
 
-// Button event listener
-document.getElementById('newPoemBtn').addEventListener('click', () => {
+// Button event listeners
+const generateBtn = document.getElementById('generateBtn');
+const wordInput = document.getElementById('wordInput');
+const loadingSpinner = document.getElementById('loadingSpinner');
+const poemDisplay = document.getElementById('poemDisplay');
+const newPoemBtn = document.getElementById('newPoemBtn');
+
+generateBtn.addEventListener('click', generatePoemFromInput);
+wordInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') generatePoemFromInput();
+});
+
+newPoemBtn.addEventListener('click', () => {
     displayRandomPoem();
     generateWordCollage();
 });
 
+async function generatePoemFromInput() {
+    const word = wordInput.value.trim();
+    
+    if (!word) {
+        poemDisplay.innerHTML = '<div class="poem-line" style="color: #d4a574;">Please enter a word...</div>';
+        return;
+    }
+    
+    loadingSpinner.style.display = 'flex';
+    generateBtn.disabled = true;
+    poemDisplay.innerHTML = '';
+    
+    try {
+        const response = await fetch('http://localhost:3001/api/generate-poem', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ word })
+        });
+        
+        if (!response.ok) {
+            throw new Error('Failed to generate poem');
+        }
+        
+        const data = await response.json();
+        const poem = data.poem;
+        
+        // Format poem with line breaks
+        const lines = poem.split('\n').filter(line => line.trim());
+        const poemHtml = lines
+            .map(line => `<div class="poem-line">${escapeHtml(line)}</div>`)
+            .join('');
+        
+        poemDisplay.innerHTML = poemHtml;
+        generateWordCollage();
+        newPoemBtn.style.display = 'block';
+        
+    } catch (error) {
+        console.error('Error:', error);
+        poemDisplay.innerHTML = `<div class="poem-line" style="color: #d4a574;">Unable to connect to poem generator. Make sure the server is running on port 3001.</div>`;
+    } finally {
+        loadingSpinner.style.display = 'none';
+        generateBtn.disabled = false;
+    }
+}
+
+function escapeHtml(text) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+    return text.replace(/[&<>"']/g, m => map[m]);
+}
+
 // Initialize on page load
 window.addEventListener('load', () => {
-    displayRandomPoem();
+    // Focus input field
+    document.getElementById('wordInput').focus();
+    
+    // Show word garden
     generateWordCollage();
     
     // Regenerate collage every 15 seconds

@@ -23,13 +23,25 @@
     <main class="main-container">
         <div class="breathing-space"></div>
         
+        <section class="input-sanctuary">
+            <label for="wordInput" class="input-label">Enter a word (any language):</label>
+            <div class="input-wrapper">
+                <input type="text" id="wordInput" class="word-input" placeholder="rose, 光, amor, حكمة..." autocomplete="off">
+                <button class="btn-generate" id="generateBtn">Generate Poem</button>
+            </div>
+            <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+                <div class="spinner"></div>
+                <p>Composing your poem...</p>
+            </div>
+        </section>
+        
         <section class="poem-sanctuary">
             <div class="zen-border"></div>
             <div class="poem-display" id="poemDisplay"></div>
             <div class="zen-border"></div>
         </section>
 
-        <button class="btn-meditate" id="newPoemBtn">Breathe & Reflect</button>
+        <button class="btn-meditate" id="newPoemBtn" style="display: none;">Breathe & Reflect</button>
 
         <section class="word-garden" id="wordCollage"></section>
         
