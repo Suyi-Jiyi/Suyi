@@ -1,0 +1,310 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Georgia', serif;
+    background: #0a0e27;
+    color: #c9c9c9;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Cosmic background with subtle depth */
+.cosmic-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(135deg, #0a0e27 0%, #1a0f3a 50%, #0f1f3f 100%);
+}
+
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,0.6), rgba(255,255,255,0.1)),
+        radial-gradient(1.5px 1.5px at 45% 35%, rgba(255,255,255,0.5), rgba(255,255,255,0.05)),
+        radial-gradient(1px 1px at 70% 15%, rgba(255,255,255,0.7), rgba(255,255,255,0.1)),
+        radial-gradient(1px 1px at 25% 65%, rgba(255,200,100,0.4), rgba(255,200,100,0.05)),
+        radial-gradient(1.5px 1.5px at 85% 50%, rgba(255,255,255,0.6), rgba(255,255,255,0.1));
+    background-repeat: repeat;
+    background-size: 300px 300px;
+    animation: startwinkle 8s ease-in-out infinite;
+}
+
+.planets {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes startwinkle {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+}
+
+header {
+    text-align: center;
+    padding: 80px 20px 60px;
+    background: transparent;
+    border: none;
+    position: relative;
+    z-index: 1;
+}
+
+.header-inner {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 3em;
+    letter-spacing: 6px;
+    color: #e8d4b8;
+    margin-bottom: 15px;
+    font-weight: 300;
+    text-transform: uppercase;
+    animation: breathe 6s ease-in-out infinite;
+}
+
+.subtitle {
+    font-size: 1.1em;
+    color: #a89968;
+    font-style: italic;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+.mandala-small {
+    width: 80px;
+    height: 80px;
+    margin: 20px auto;
+    background: radial-gradient(circle, transparent 20%, #a89968 22%, #a89968 25%, transparent 27%, transparent 45%, #a89968 47%, #a89968 50%, transparent 52%);
+    border-radius: 50%;
+    box-shadow: inset 0 0 20px rgba(168, 153, 104, 0.3);
+    opacity: 0.6;
+}
+
+@keyframes breathe {
+    0%, 100% { opacity: 0.9; letter-spacing: 6px; }
+    50% { opacity: 1; letter-spacing: 8px; }
+}
+
+.main-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.breathing-space {
+    height: 40px;
+}
+
+.poem-sanctuary {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 50px 40px;
+    margin: 60px 0;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.zen-border {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #a89968, transparent);
+    margin: 30px 0;
+}
+
+.poem-display {
+    font-size: 1.15em;
+    line-height: 2;
+    color: #d4c5b0;
+    text-align: center;
+    animation: fadeInSlow 1.2s ease-in;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+.poem-line {
+    margin: 18px 0;
+}
+
+@keyframes fadeInSlow {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.word-highlight {
+    color: #d4a574;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.btn-meditate {
+    display: block;
+    margin: 40px auto;
+    padding: 14px 40px;
+    background: transparent;
+    color: #a89968;
+    border: 2px solid #a89968;
+    border-radius: 30px;
+    font-size: 0.95em;
+    font-weight: 300;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    text-transform: uppercase;
+}
+
+.btn-meditate:hover {
+    background: rgba(168, 153, 104, 0.1);
+    color: #e8d4b8;
+    border-color: #e8d4b8;
+    box-shadow: 0 0 20px rgba(168, 153, 104, 0.2);
+}
+
+.btn-meditate:active {
+    transform: scale(0.98);
+}
+
+/* Word garden section */
+.word-garden {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 80px 0 60px;
+    min-height: 250px;
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+.word {
+    padding: 10px 18px;
+    background: transparent;
+    border: 1px solid rgba(168, 153, 104, 0.4);
+    border-radius: 25px;
+    color: #c9c9c9;
+    font-size: 0.9em;
+    cursor: default;
+    transition: all 0.5s ease;
+    animation: floatGentle 4s ease-in-out infinite;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+.word:hover {
+    background: rgba(168, 153, 104, 0.08);
+    border-color: rgba(168, 153, 104, 0.8);
+    transform: translateY(-4px);
+    color: #d4a574;
+}
+
+@keyframes floatGentle {
+    0%, 100% { transform: translateY(0px); opacity: 0.7; }
+    50% { transform: translateY(-8px); opacity: 1; }
+}
+
+.word.language-ja {
+    color: #d4a574;
+    border-color: rgba(212, 165, 116, 0.3);
+}
+
+.word.language-zh {
+    color: #b8a888;
+    border-color: rgba(184, 168, 136, 0.3);
+}
+
+.word.language-es {
+    color: #d4c5b0;
+    border-color: rgba(212, 197, 176, 0.3);
+}
+
+.word.language-fr {
+    color: #a89968;
+    border-color: rgba(168, 153, 104, 0.3);
+}
+
+.word.language-ar {
+    color: #c9a876;
+    border-color: rgba(201, 168, 118, 0.3);
+}
+
+.word.language-de {
+    color: #b8a888;
+    border-color: rgba(184, 168, 136, 0.3);
+}
+
+footer {
+    text-align: center;
+    padding: 60px 20px 40px;
+    border-top: 1px solid rgba(168, 153, 104, 0.1);
+    color: #7a7a7a;
+    font-size: 0.9em;
+    margin-top: 60px;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-ornament {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #a89968, transparent);
+    margin: 20px auto 0;
+    opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.2em;
+        letter-spacing: 4px;
+    }
+
+    .subtitle {
+        font-size: 0.95em;
+    }
+
+    .mandala-small {
+        width: 60px;
+        height: 60px;
+    }
+
+    .poem-sanctuary {
+        padding: 40px 25px;
+        margin: 40px 0;
+    }
+
+    .poem-display {
+        font-size: 1em;
+    }
+
+    .word-garden {
+        margin: 60px 0 40px;
+    }
+
+    header {
+        padding: 60px 20px 40px;
+    }
+
+    .main-container {
+        padding: 10px;
+    }
+}
